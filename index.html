@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<title>Lean Tutor</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" >
+  <meta name="format-detection" content="telephone=no">
+  
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" sizes="196x196" href="icons/icon-196.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/iPad@2x.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icons/Icon-72@2x.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/iPhone@2x.png">
+
+  <meta name="application-name" content="Lean Tutor App">
+  
+   <!--
+  Chrome 35 has old :host behavior before :host-context addition.
+  Since Chrome 35 does not have HTMLImports, we can use this as a decent signal
+  to force the ShadowDOM Polyfill.
+  -->
+  <script>
+    if (!('import' in document.createElement('link'))) {
+      var Platform = {flags: {shadow: true}};
+    }
+  </script>
+
+<script src="bower_components/platform/platform.js"></script>
+  <!--
+  <link rel="import" href="components/font-roboto/roboto.html">
+  -->
+<link rel="import" href="lean/fonts/roboto.html">
+<link rel="import" href="bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="bower_components/core-icons/core-icons.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/hero-transition.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/cross-fade.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/slide-down.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="bower_components/core-animated-pages/transitions/tile-cascade.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="bower_components/core-icons/av-icons.html">
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+ <script>
+    if (navigator.serviceWorker) {
+      // Register our ServiceWorker
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+</head>
+<body unresolved>
+<polymer-element name="my-element">
+
+  <template>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+		margin: -8px;
+      }
+      core-toolbar {
+        background-color: rgb(3, 169, 244);
+      }
+      #section {
+        left: -10px;
+        top: -50px;
+        position: absolute;
+      }
+      #section1 {
+        left: 40px;
+        top: 10px;
+        position: absolute;
+      }
+      #section2 {
+        left: 30px;
+        top: 140px;
+        position: absolute;
+      }
+      #section3 {
+        width: 100%;
+        height: 100%;
+        left: -10px;
+        top: 120px;
+        position: static;
+      }
+      #paper_tabs1 {
+        color: rgb(255, 255, 255);
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 2px;
+        background-color: rgb(0, 188, 212);
+      }
+      #core_animated_pages {
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        left: 0px;
+        position: static;
+        background-color: rgb(238, 238, 238);
+      }
+      #core_card {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+        padding: 50px;
+        background-color: rgb(255, 255, 255);
+      }
+      #paper_fab {
+        left: 110px;
+      }
+      #core_card1 {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+        padding: 50px;
+        background-color: rgb(255, 255, 255);
+      }
+      #div2 {
+        left: 100px;
+      }
+      #paper_fab1 {
+        left: 110px;
+      }
+    </style>
+    <core-toolbar id="core_toolbar" class="medium-tall" active>
+      <paper-icon-button icon="menu" id="navicon"></paper-icon-button>
+      <span id="span" flex>Lean Tutor</span>
+      <paper-icon-button icon="more-vert" id="morebutton"></paper-icon-button>
+    </core-toolbar>
+    <section id="section2">
+      <section id="section1">
+        <section id="section" layout horizontal center center-justified>
+      </section>
+      </section>
+    </section>
+    <section id="section3" layout vertical>
+      <paper-tabs noink nobar selected="1" selectedindex="1" id="paper_tabs1">
+        <paper-tab id="paper_tab2">Login</paper-tab>
+        <paper-tab id="paper_tab3" active>Registration</paper-tab>
+      </paper-tabs>
+      <section id="section4" flex relative>
+        <core-animated-pages selected="{{ $.paper_tabs1.selected }}" lastselected="0" selectedindex="1" notap id="core_animated_pages">
+          <core-card id="core_card" two flex center vertical layout>
+            <paper-input label="Username" willvalidate id="paper_input" layout vertical center-justified></paper-input>
+            <paper-input label="Password" willvalidate id="paper_input1" layout vertical></paper-input>
+            <paper-radio-group selected="Teacher" valueattr="label" id="paper_radio_group">
+              </paper-radio-group>
+            <div id="div" layout horizontal end-justified>
+			</div>
+            <paper-radio-group selected="Student" valueattr="label" selectedindex="0" id="paper_radio_group1">
+              <paper-radio-button checked label="Student" id="paper_radio_button"></paper-radio-button>
+              <paper-radio-button label="Teacher" id="paper_radio_button1"></paper-radio-button>
+            </paper-radio-group>
+            <div id="div1">
+              <paper-fab icon="check" id="paper_fab"></paper-fab>
+            </div>
+          </core-card>
+          <core-card id="core_card1" layout vertical center two flex active>
+            <paper-input label="Username" willvalidate id="paper_input2" layout vertical></paper-input>
+            <paper-input label="Password" willvalidate id="paper_input3" layout vertical></paper-input>
+            <paper-input label="Email" willvalidate id="paper_input4" layout vertical></paper-input>
+            <paper-input label="Skype" willvalidate id="paper_input5" layout vertical></paper-input>
+            <paper-input label="Telephone" willvalidate id="paper_input6" layout vertical></paper-input>
+            <paper-radio-group selected="Medium" valueattr="label" selectedindex="1" id="paper_radio_group2">
+              <paper-radio-button label="Student" id="paper_radio_button2"></paper-radio-button>
+              <paper-radio-button checked label="Teacher" id="paper_radio_button3"></paper-radio-button>
+            </paper-radio-group>
+            <div id="div2" layout horizontal>
+              <paper-fab icon="check" id="paper_fab1"></paper-fab>
+            </div>
+          </core-card>
+        </core-animated-pages>
+      </section>
+    </section>
+  </template>
+
+  <script>
+
+    Polymer({
+      
+    });
+
+  </script>
+
+</polymer-element>
+ <my-element></my-element> 
+</body>
+</html>
